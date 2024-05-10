@@ -3,26 +3,27 @@ const MongoClient = mongodb.MongoClient;
 
 let _db;
 
-mongoConnect = callback => {
-  MongoClient.connect('mongodb+srv://user:user@cluster0.6ks9cpl.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0')
-  .then(client => {
-    console.log('connected');
-    _db = client.db();;
-    callback();
-  })
-  .catch(error => {
-    console.log(error);
-    throw error;
-  })
+const mongoConnect = callback => {
+  MongoClient.connect(
+    'mongodb+srv://user:user@cluster0.6ks9cpl.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0'
+  )
+    .then(client => {
+      console.log('Connected!');
+      _db = client.db();
+      callback();
+    })
+    .catch(err => {
+      console.log(err);
+      throw err;
+    });
 };
 
-const getDb = () =>{
-  if (_db){
+const getDb = () => {
+  if (_db) {
     return _db;
   }
-  throw 'no databse found'
+  throw 'No database found!';
 };
 
-
-exports.mongoConnect= mongoConnect;
+exports.mongoConnect = mongoConnect;
 exports.getDb = getDb;
