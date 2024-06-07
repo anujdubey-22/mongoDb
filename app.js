@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('5bab316ce0a7c75f783cb8a8')
+  User.findById('6aab725ce0a7b75f911sk0q3')
     .then(user => {
       req.user = user;
       next();
@@ -40,8 +40,8 @@ mongoose
     User.findOne().then(user => {
       if (!user) {
         const user = new User({
-          name: 'Max',
-          email: 'max@test.com',
+          name: 'user',
+          email: 'user@test.com',
           cart: {
             items: []
           }
